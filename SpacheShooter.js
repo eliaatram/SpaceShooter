@@ -20,12 +20,12 @@ var backready = false; // initial background state is false
 background.onload = function () {
   backready = true;
 };
-background.src = "space.png"; // setting the background image
+background.src = "./assets/images/space.png"; // setting the background image
 
 // changing the background based on the users choice
 // this imgae object will be constintly changing when the user presses different options of the game like play or end
 var mainMenu = new Image();
-mainMenu.src = "main.png";
+mainMenu.src = "./assets/images/main.png";
 
 // array of sprites containing objects of classes and array delete is to delete unecessary objects
 var sprites = [];
@@ -99,11 +99,11 @@ function sound(src) {
 }
 
 // sound effects used in the game
-var theme = new sound("SkyFire.ogg"); // game theme music
-var lost = new sound("sfx_lose.ogg"); // sound effect used when the player looses the stage
-var victory = new sound("victory.mp3"); // sound effect used when the player wins the stage
-var collisionSound = new sound("sfx_laser2.ogg"); // user damaged sound
-var explode = new sound("explodemini.wav"); // enemy explosion sound
+var theme = new sound("./assets/audios/SkyFire.ogg"); // game theme music
+var lost = new sound("./assets/audios/sfx_lose.ogg"); // sound effect used when the player looses the stage
+var victory = new sound("./assets/audios/victory.mp3"); // sound effect used when the player wins the stage
+var collisionSound = new sound("./assets/audios/sfx_laser2.ogg"); // user damaged sound
+var explode = new sound("./assets/audios/explodemini.wav"); // enemy explosion sound
 
 // global collision criteria
 function collision(firstObjectX, firstObjectY, firstObjectHeight, firstObjectWidth,
@@ -137,13 +137,13 @@ class Bullet {
 
     // drawing user bullet
     if (this.name === "user") {
-      this.userBulletImage.src = "userbullet.png";
+      this.userBulletImage.src = "./assets/images/userbullet.png";
       ctx.drawImage(this.userBulletImage, this.x, this.y, 5, 25);
     }
 
     // drawing enemy bullet
     if (this.name === "enemy") {
-      this.enemyBulletImage.src = "enemybullet.png";
+      this.enemyBulletImage.src = "./assets/images/enemybullet.png";
       ctx.drawImage(this.enemyBulletImage, this.x, this.y, 10, 10);
     }
   }
@@ -205,7 +205,7 @@ class EnemyShip {
       enemyReady = true;
     };
     if (!this.enemyDead) {
-      this.enemyImage.src = "enemyship.png";
+      this.enemyImage.src = "./assets/images/enemyship.png";
     }
     if (enemyReady) {
       ctx.drawImage(this.enemyImage, this.x, this.y, 40, 40);
@@ -294,7 +294,7 @@ class Boss {
       bossReady = true;
     };
     if (!this.enemyDead) {
-      this.bossImage.src = "boss.png";
+      this.bossImage.src = "./assets/images/boss.png";
     }
     if (bossReady) {
       ctx.drawImage(this.bossImage, this.x, this.y, 150, 150);
@@ -390,10 +390,10 @@ class Usership {
   // draw function of the UserShip class
   draw(ctx) {
     if (!this.dead) {
-      this.userImage.src = "usership.png";
+      this.userImage.src = "./assets/images/usership.png";
     }
     if (this.dead) {
-      this.userImage.src = "usershipdamaged.png";
+      this.userImage.src = "./assets/images/usershipdamaged.png";
       this.deadtime++;
       if (this.deadtime === 40) {
         this.dead = false;
@@ -590,18 +590,18 @@ var main = function () {
 
     if (user.life === 0) {
       lost.play();
-      mainMenu.src = "lost.png";
+      mainMenu.src = "./assets/images/lost.png";
       gameReset();
     }
     else if (score > 100 && level !== 2) {
       level++;
       victory.play();
-      mainMenu.src = "won.png";
+      mainMenu.src = "./assets/images/won.png";
       gameReset();
     }
     else if (score > 100 && level === 2) {
       victory.play();
-      mainMenu.src = "end.png";
+      mainMenu.src = "./assets/images/end.png";
       gameReset();
       menu();
       level = 1;
